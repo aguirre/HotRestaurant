@@ -122,6 +122,7 @@
         //Posts data from form
         $.post("/api/tables", newReservation).then(function(data) {
           console.log(data);
+          console.log("newres: " + newReservation);
           alert("Reservation added...");
         });
       });

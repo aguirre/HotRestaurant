@@ -69,26 +69,28 @@
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script type="text/javascript">
-      $.get("/tables", function(data) {
-        if (res[i].table === "wait") {
-          ///populate wait list section
-          var name = $("<h3>").text(data[i].name);
-          var phone = $("<p>").text(data[i].phone);
-          var email = $("<p>").text(data[i].email);
-          var uniqueId = $("<p>").text(data[i].uniqueId);
-          var brk = $("<p>").text("-------------------");
+      $.get("/api/tables", function(data) {
+        for (var i = 0; i < data.length; i++) {
+          if (data[i].table === "wait") {
+            ///populate wait list section
+            var name = $("<h3>").text(data[i].name);
+            var phone = $("<p>").text(data[i].phone);
+            var email = $("<p>").text(data[i].email);
+            var uniqueId = $("<p>").text(data[i].uniqueId);
+            var brk = $("<p>").text("-------------------");
 
-          $("#waitingList").append(name, phone, email, uniqueId, brk);
-        } else {
-          //populate in reservation list section
+            $("#waitingList").append(name, phone, email, uniqueId, brk);
+          } else {
+            //populate in reservation list section
 
-          var name = $("<h3>").text(data[i].name);
-          var phone = $("<p>").text(data[i].phone);
-          var email = $("<p>").text(data[i].email);
-          var uniqueId = $("<p>").text(data[i].uniqueId);
-          var brk = $("<p>").text("-------------------");
+            var name = $("<h3>").text(data[i].name);
+            var phone = $("<p>").text(data[i].phone);
+            var email = $("<p>").text(data[i].email);
+            var uniqueId = $("<p>").text(data[i].uniqueId);
+            var brk = $("<p>").text("-------------------");
 
-          $("#resList").append(name, phone, email, uniqueId, brk);
+            $("#resList").append(name, phone, email, uniqueId, brk);
+          }
         }
       });
     </script>

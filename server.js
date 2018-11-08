@@ -29,22 +29,26 @@ app.get("/reserve", function(req, res) {
   res.sendFile(path.join(__dirname, "reserve.html"));
 });
 
+app.get("/api/tables", function(req, res) {
+  return res.json(res_tables);
+});
+
 // =============================================================
 // POST
 
 app.post("/api/tables", function(req, res) {
   var new_res = req.body;
-
+  console.log(new_res);
   res_tables.push(new_res);
 
   for (var i = 0; i < res_tables.length; i++) {
-    if (i < 4) {
+    if (i < 5) {
       res_tables[i].table = i + 1;
     } else {
       res_tables[i].table = "wait";
     }
   }
-
+  console.log(res_tables);
   return res.json(res_tables);
 });
 
