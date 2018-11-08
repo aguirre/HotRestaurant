@@ -45,17 +45,13 @@
           <!-- Current Tables in Use -->
           <div class="card">
             <div class="card-header"><h4>Current Reservations</h4></div>
-            <div class="card-body">
-              <ul id="tableList" class="list-group"></ul>
-            </div>
+            <div class="card-body" id="resList"></div>
           </div>
 
           <!-- Waiting List Card -->
           <div class="card mt-4">
             <div class="card-header"><h4>Waiting List</h4></div>
-            <div class="card-body">
-              <ul id="waitList" class="list-group"></ul>
-            </div>
+            <div class="card-body" id="waitingList"></div>
           </div>
         </div>
       </div>
@@ -72,6 +68,29 @@
       </footer>
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script type="text/javascript"></script>
+    <script type="text/javascript">
+      $.get("/tables", function(data) {
+        if (res[i].table === "wait") {
+          ///populate wait list section
+          var name = $("<h3>").text(data[i].name);
+          var phone = $("<p>").text(data[i].phone);
+          var email = $("<p>").text(data[i].email);
+          var uniqueId = $("<p>").text(data[i].uniqueId);
+          var brk = $("<p>").text("-------------------");
+
+          $("#waitingList").append(name, phone, email, uniqueId, brk);
+        } else {
+          //populate in reservation list section
+
+          var name = $("<h3>").text(data[i].name);
+          var phone = $("<p>").text(data[i].phone);
+          var email = $("<p>").text(data[i].email);
+          var uniqueId = $("<p>").text(data[i].uniqueId);
+          var brk = $("<p>").text("-------------------");
+
+          $("#resList").append(name, phone, email, uniqueId, brk);
+        }
+      });
+    </script>
   </body>
 </html>

@@ -4,6 +4,7 @@ var res = [];
 
 function reserve_table() {
   if (res.length > 4) {
+    res.push();
   } else {
   }
 }

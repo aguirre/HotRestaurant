@@ -99,13 +99,31 @@
         </div>
       </footer>
     </div>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script type="text/javascript">
-      //Submit Reservation Button
+      //Submit Reservation Button - on click create a new Reservation Object with answers to questions on form.
       $("#reserve").on("click", function(event) {
         event.preventDfault();
 
-        var newReservation = {};
+        var newReservation = {
+          name: $("reserve-name")
+            .val()
+            .trim(),
+          phone: $("reserve-phone")
+            .val()
+            .trim(),
+          email: $("reserve-email")
+            .val()
+            .trim(),
+          uniqueId: $("reserve-unique-id")
+            .val()
+            .trim()
+        };
+
+        //Posts data from form
+        $.post("/tables", newReservation).then(function(data) {
+          console.log(data);
+          alert("Reservation added...");
+        });
       });
     </script>
   </body>
