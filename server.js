@@ -2,6 +2,7 @@
 // =============================================================
 var express = require("express");
 var path = require("path");
+var bodyParser = require("body-parser");
 
 // Sets up the Express App
 // =============================================================
@@ -9,8 +10,8 @@ var app = express();
 var PORT = process.env.PORT || 3000;
 
 // Sets up the Express app to handle data parsing
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 var res_tables = [];
 // Routes
@@ -31,7 +32,7 @@ app.get("/reserve", function(req, res) {
 // =============================================================
 // POST
 
-app.post("/tables", function(req, res) {
+app.post("/api/tables", function(req, res) {
   var new_res = req.body;
 
   res_tables.push(new_res);

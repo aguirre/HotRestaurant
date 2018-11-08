@@ -50,7 +50,7 @@
             </div>
 
             <div class="panel-body">
-              <form role="form" action="http://localhost:3000" method="POST">
+              <form role="form">
                 <div class="form-group">
                   <label for="reserve-name">Name</label>
                   <input type="text" class="form-control" id="reserve-name" />
@@ -102,25 +102,25 @@
     <script type="text/javascript">
       //Submit Reservation Button - on click create a new Reservation Object with answers to questions on form.
       $("#reserve").on("click", function(event) {
-        event.preventDfault();
+        event.preventDefault();
 
         var newReservation = {
-          name: $("reserve-name")
+          name: $("#reserve-name")
             .val()
             .trim(),
-          phone: $("reserve-phone")
+          phone: $("#reserve-phone")
             .val()
             .trim(),
-          email: $("reserve-email")
+          email: $("#reserve-email")
             .val()
             .trim(),
-          uniqueId: $("reserve-unique-id")
+          uniqueId: $("#reserve-unique-id")
             .val()
             .trim()
         };
 
         //Posts data from form
-        $.post("/tables", newReservation).then(function(data) {
+        $.post("/api/tables", newReservation).then(function(data) {
           console.log(data);
           alert("Reservation added...");
         });
